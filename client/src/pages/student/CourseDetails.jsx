@@ -55,7 +55,7 @@ const CourseDetails = () => {
 
             <p>{courseData.enrolledStudents.length}{courseData.enrolledStudents.length > 1 ? " students enrolled" : " student enrolled"}</p>
           </div>
-          <p>Course by <span className="text-sm">Sparken</span></p>
+          <p className="text-sm">Course by <span className="text-blue-600 underline">Sparken</span></p>
         </div>
         {/* right column */}
         <div></div>
