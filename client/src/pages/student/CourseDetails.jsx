@@ -32,10 +32,10 @@ const CourseDetails = () => {
     }
   }, [allCourses]);
 
-  useEffect(() => {
-    // console.log("Fetching all courses...");
-    fetchAllCourses();
-  }, [allCourses, id]);
+  // useEffect(() => {
+  //   // console.log("Fetching all courses...");
+  //   fetchAllCourses();
+  // }, []);
   
   // const fetchAllCourses = async () => {
   //   // console.log("Dummy Courses:", dummyCourses);
