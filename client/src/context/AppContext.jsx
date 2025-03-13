@@ -54,7 +54,7 @@ export const AppContextProvider = (props)=>{
         fetchAllCourses()
     },[])
     const value = {
-        currency,allCourses, navigate, calculateRating, isEducator, setisEducator, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures
+        currency,allCourses, navigate, calculateRating, isEducator, setisEducator, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime
 
     }
     return(

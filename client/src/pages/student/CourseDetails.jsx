@@ -4,20 +4,15 @@ import { AppContext } from "../../context/AppContext";
 import { assets } from "../../assets/assets";
 import Loading from "../../components/student/Loading";
 import App from "../../App";
+import humanizeDuration from "humanize-duration";
 
 const CourseDetails = () => {
   const { id } = useParams();
   // console.log("Course ID from URL:", id);
   const [courseData, setcourseData] = useState(null);
-  const { allCourses, calculateRating, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures } = useContext(AppContext);
-  // const fetchCourseData = async () => {
-  //   const findCourse = allCourses.find((course) => course._id === id);
-  //   setcourseData(findCourse);
-  // };
+  const { allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime } = useContext(AppContext);
   const fetchCourseData = async () => {
-    // console.log("All Courses:", allCourses);
     const findCourse = allCourses.find((course) => course._id === id);
-    // console.log("Found Course:", findCourse);
     setcourseData(findCourse);
   };
   
@@ -27,22 +22,9 @@ const CourseDetails = () => {
   // }, []);
   useEffect(() => {
     if (allCourses.length > 0) {
-      // console.log("Fetching all courses...");
       fetchCourseData();
     }
   }, [allCourses]);
-
-  // useEffect(() => {
-  //   // console.log("Fetching all courses...");
-  //   fetchAllCourses();
-  // }, []);
-  
-  // const fetchAllCourses = async () => {
-  //   // console.log("Dummy Courses:", dummyCourses);
-  //   setAllCourses(dummyCourses);
-  // };
-  
-  
 
   return courseData ? (
     <>
@@ -60,6 +42,7 @@ const CourseDetails = () => {
               __html: courseData.courseDescription.slice(0, 200) + "...",
             }}
           ></p>
+
 
           {/* {review and rating} */}
           <div className="flex items-center space-x-2 pt-3 pb-1 text-sm">
@@ -85,6 +68,37 @@ const CourseDetails = () => {
           <p className="text-sm">Course by <span className="text-blue-600 underline">Sparken</span></p>
           <div className="pt-8 text-gray-800">
             <h2 className="text-xl font-semibold">Course Structure</h2>
+
+            <div className="pt-5">
+              {courseData.courseContent.map((chapter,index)=>(
+                <div key={index} className="border border-gray-300 bg-white mb-2 rounded">
+                  <div className="flex items-center justify-between px-4 py-3 cursor-pointer select-none">
+                    <div className="flex items-center gap-2">
+                      <img src={assets.down_arrow_icon} alt="arrow icon" />
+                      <p className="font-medium md:text-base text-sm">{chapter.chapterTitle}</p>
+                    </div>
+                    <p className="text-sm md:text-default">{chapter.chapterContent.length} lectures - {calculateChapterTime(chapter)}</p>
+                  </div>
+                  <div>
+                    <ul>
+                      {chapter.chapterContent.map((lecture,i)=>(
+                        <li key={i} className="flex items-center gap-2">
+                          <img src={assets.play_icon} alt="play icon" className="w-4 h-4 m-1" />
+                          <div>
+                            <p className="text-sm md:text-default">{lecture.lectureTitle}</p>
+                            <div>
+                              {lecture.isPreviewFree && <p>Preview</p>}
+                              <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000)}</p>
+                            </div>
+                          </div>
+                          
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
 
           </div>
         </div>
