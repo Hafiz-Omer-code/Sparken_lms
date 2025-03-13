@@ -7,7 +7,7 @@ import App from "../../App";
 
 const CourseDetails = () => {
   const { id } = useParams();
-  console.log("Course ID from URL:", id);
+  // console.log("Course ID from URL:", id);
   const [courseData, setcourseData] = useState(null);
   const { allCourses, calculateRating, calculateChapterTime, calculateCourseDuration, calculateNoOfLectures } = useContext(AppContext);
   // const fetchCourseData = async () => {
@@ -15,9 +15,9 @@ const CourseDetails = () => {
   //   setcourseData(findCourse);
   // };
   const fetchCourseData = async () => {
-    console.log("All Courses:", allCourses);
+    // console.log("All Courses:", allCourses);
     const findCourse = allCourses.find((course) => course._id === id);
-    console.log("Found Course:", findCourse);
+    // console.log("Found Course:", findCourse);
     setcourseData(findCourse);
   };
   
@@ -27,20 +27,20 @@ const CourseDetails = () => {
   // }, []);
   useEffect(() => {
     if (allCourses.length > 0) {
-      console.log("Fetching all courses...");
+      // console.log("Fetching all courses...");
       fetchCourseData();
     }
   }, [allCourses]);
 
   useEffect(() => {
-    console.log("Fetching all courses...");
+    // console.log("Fetching all courses...");
     fetchAllCourses();
-  }, []);
+  }, [allCourses, id]);
   
-  const fetchAllCourses = async () => {
-    console.log("Dummy Courses:", dummyCourses);
-    setAllCourses(dummyCourses);
-  };
+  // const fetchAllCourses = async () => {
+  //   // console.log("Dummy Courses:", dummyCourses);
+  //   setAllCourses(dummyCourses);
+  // };
   
   
 
