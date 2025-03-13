@@ -109,10 +109,10 @@ const toggleSection = (index) => {
             </div>
 
           </div>
-          <div>
-            <h3>Course Description</h3>
+          <div className="py-20 text-sm md:text-default">
+            <h3 className="text-xl font-semibold text-gray-800">Course Description</h3>
             <p
-            className="pt-3"
+            className="pt-3 text-rich"
             dangerouslySetInnerHTML={{
               __html: courseData.courseDescription
             }}
@@ -120,7 +120,13 @@ const toggleSection = (index) => {
           </div>
         </div>
         {/* right column */}
-        <div></div>
+        <div>
+          <img src={courseData.courseThumbnail} alt="" />
+          <div className="pt-5">
+            <img className="w-3.5" src={assets.time_left_clock_icon} alt="time left clock icon" />
+            <p className="text-red-500"><span className="font-medium">5 days</span> left at this price!</p>
+          </div>
+        </div>
       </div>
     </>
   ) : (
