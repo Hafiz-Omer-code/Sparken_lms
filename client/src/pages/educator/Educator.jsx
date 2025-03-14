@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom'
 import Navbar from '../../components/educator/Navbar'
 import Sidebar from '../../components/educator/Sidebar'
 import { assets } from '../../assets/assets'
+import Footer from '../../components/educator/Footer'
+import Dashboard from './Dashboard'
 
 const Educator = () => {
   return (
@@ -10,10 +12,15 @@ const Educator = () => {
         <Navbar/>
         <div className='flex'>
             <Sidebar/>
+            <div>
+              <Dashboard/>
+            </div>
             <div className='flex-1'>
             {<Outlet />}
             </div>
+            
         </div>
+        <Footer/>
     </div>
   )
 }
