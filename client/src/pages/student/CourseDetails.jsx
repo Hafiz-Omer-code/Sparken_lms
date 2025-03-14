@@ -12,6 +12,7 @@ const CourseDetails = () => {
   const [courseData, setcourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
   const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false);
+  const [playerData, setPlayerData] = useState(null);
   const { allCourses, calculateRating, calculateNoOfLectures, calculateCourseDuration, calculateChapterTime, currency } = useContext(AppContext);
   const fetchCourseData = async () => {
     const findCourse = allCourses.find((course) => course._id === id);
@@ -97,7 +98,11 @@ const toggleSection = (index) => {
                           <div className="flex items-center justify-between w-full text-gray-800 text-xs md:text-default">
                             <p className="text-sm md:text-default">{lecture.lectureTitle}</p>
                             <div className="flex gap-2">
-                              {lecture.isPreviewFree && <p className="text-blue-500 cursor-pointer">Preview</p>}
+                              {lecture.isPreviewFree && <p onClick={()=> setPlayerData({
+                                videoId: lecture.lectureUrl.split('/').pop(),
+                                title: lecture.lectureTitle,
+                                thumbnail: courseData.courseThumbnail,
+                              })} className="text-blue-500 cursor-pointer">Preview</p>}
                               <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units: ['h','m']})}</p>
                             </div>
                           </div>
@@ -154,7 +159,7 @@ const toggleSection = (index) => {
             <button className="md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white font-medium">{isAlreadyEnrolled ? 'Already Enrolled' : 'Enroll Now'}</button>
             <div className="pt-6">
               <p className="md:text-xl text-lg font-medium text-gray-800">What's in the course?</p>
-              <ul className="m1-4 pt-2 text-sm md:text-default list-disc text-gray-500">
+              <ul className="m1-4 pt-2 text-sm md:text-default list-disc text-gray-500 pl-1">
                 <li>lifetime access with free updates.</li>
                 <li>Step-by-Step, hands-on project guidence.</li>
                 <li>Downloadable resources and source code.</li>
