@@ -1,10 +1,11 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Navbar from '../../components/educator/Navbar'
 
 const Educators = () => {
   return (
-    <div>
-        <h1>Educators</h1>
+    <div className='text-default min-h-screen bg-white'>
+        <Navbar/>
         <div>
             {<Outlet />}
         </div>
