@@ -13,7 +13,7 @@ const Navbar = () => {
     </Link>
     <div className='flex items-center text-gray-500 relative'>
       <p>Hi! {user? user.fullName : 'Developers'}</p>
-      {user? <UserButton/> : <img className='w-8' src={assets.profile_img} /> }
+      {user? <UserButton/> : <img className='max-w-8 rounded-full ' src={assets.profile_img} /> }
     </div>
     </div>
   )
