@@ -12,9 +12,9 @@ const Educator = () => {
         <Navbar/>
         <div className='flex'>
             <Sidebar/>
-            <div>
+            {/* <div>
               <Dashboard/>
-            </div>
+            </div> */}
             <div className='flex-1'>
             {<Outlet />}
             </div>
